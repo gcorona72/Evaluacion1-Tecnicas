@@ -1,21 +1,21 @@
 # ExamenTecnicas
 
-## Overview
+## Descripción General
 
-ExamenTecnicas is a Java-based project that demonstrates three different functionalities:
-1. Approximation of PI using the Monte Carlo method.
-2. Implementation of Conway's Game of Life.
-3. Graph traversal to find a path between two nodes.
+ExamenTecnicas es un proyecto basado en Java que demuestra tres funcionalidades diferentes:
+1. Aproximación de PI utilizando el método de Monte Carlo.
+2. Implementación del Juego de la Vida de Conway.
+3. Recorrido de un grafo para encontrar un camino entre dos nodos.
 
-The project uses Spring Boot for application configuration and execution, and Maven for dependency management.
+El proyecto utiliza Spring Boot para la configuración y ejecución de la aplicación, y Maven para la gestión de dependencias.
 
-## Prerequisites
+## Requisitos Previos
 
-- Java 17 or higher
-- Maven 3.6.3 or higher
-- IntelliJ IDEA or any other Java IDE
+- Java 17 o superior
+- Maven 3.6.3 o superior
+- IntelliJ IDEA u otro IDE para Java
 
-## Project Structure
+## Estructura del Proyecto
 
 ```
 ExamenTecnicas
@@ -44,11 +44,11 @@ ExamenTecnicas
 └── pom.xml
 ```
 
-## Classes and Functionalities
+## Clases y Funcionalidades
 
 ### 1. ExamenTecnicasApplication
 
-This is the main class of the project. It implements `CommandLineRunner` to execute the application from the command line. It provides a menu to select and run different functionalities.
+Esta es la clase principal del proyecto. Implementa `CommandLineRunner` para ejecutar la aplicación desde la línea de comandos. Proporciona un menú para seleccionar y ejecutar diferentes funcionalidades.
 
 ```java
 @SpringBootApplication
@@ -59,106 +59,106 @@ public class ExamenTecnicasApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        // Menu and execution logic
+        // Lógica del menú y ejecución
     }
 }
 ```
 
 ### 2. Matematicas
 
-This class provides a method to approximate the value of PI using the Monte Carlo method.
+Esta clase proporciona un método para aproximar el valor de PI utilizando el método de Monte Carlo.
 
 ```java
 public class Matematicas {
     public static double generarNumeroPi(long pasos) {
-        // Monte Carlo method implementation
+        // Implementación del método de Monte Carlo
     }
 }
 ```
 
 ### 3. Tablero
 
-This class implements Conway's Game of Life. It can read the initial state from a file or generate a random initial state.
+Esta clase implementa el Juego de la Vida de Conway. Puede leer el estado inicial desde un archivo o generar un estado inicial aleatorio.
 
 ```java
 public class Tablero {
     public void leerEstadoActual() {
-        // Read initial state from file
+        // Leer estado inicial desde archivo
     }
 
     public void generarEstadoActualPorMontecarlo() {
-        // Generate random initial state
+        // Generar estado inicial aleatorio
     }
 
     public void transitarAlEstadoSiguiente() {
-        // Transition to the next state
+        // Transitar al siguiente estado
     }
 
     @Override
     public String toString() {
-        // Return the current state as a string
+        // Devolver el estado actual como cadena
     }
 }
 ```
 
 ### 4. Graph
 
-This class implements a graph using an adjacency list. It provides methods to add vertices and edges, and to find a path between two nodes using Depth-First Search (DFS).
+Esta clase implementa un grafo utilizando una lista de adyacencia. Proporciona métodos para añadir vértices y aristas, y para encontrar un camino entre dos nodos utilizando Búsqueda en Profundidad (DFS).
 
 ```java
 public class Graph<V> {
     public boolean addVertex(V v) {
-        // Add vertex
+        // Añadir vértice
     }
 
     public boolean addEdge(V v1, V v2) {
-        // Add edge
+        // Añadir arista
     }
 
     public List<V> onePath(V v1, V v2) {
-        // Find a path using DFS
+        // Encontrar un camino utilizando DFS
     }
 
     @Override
     public String toString() {
-        // Return the adjacency list as a string
+        // Devolver la lista de adyacencia como cadena
     }
 }
 ```
 
-## Running the Application
+## Ejecutar la Aplicación
 
-1. Clone the repository.
-2. Navigate to the project directory.
-3. Build the project using Maven:
+1. Clona el repositorio.
+2. Navega al directorio del proyecto.
+3. Construye el proyecto utilizando Maven:
    ```sh
    mvn clean install
    ```
-4. Run the application:
+4. Ejecuta la aplicación:
    ```sh
    mvn spring-boot:run
    ```
 
-## Usage
+## Uso
 
-Upon running the application, you will be presented with a menu to select one of the three functionalities:
+Al ejecutar la aplicación, se presentará un menú para seleccionar una de las tres funcionalidades:
 
-1. **Approximation of PI**: Enter the number of points to generate for the Monte Carlo method.
-2. **Game of Life**: Choose to read the initial state from a file or generate a random initial state. Then, enter the number of iterations to simulate.
-3. **Graph Path Finding**: A simple graph is constructed, and a path is found between two nodes.
+1. **Aproximación de PI**: Ingresa la cantidad de puntos a generar para el método de Monte Carlo.
+2. **Juego de la Vida**: Elige leer el estado inicial desde un archivo o generar un estado inicial aleatorio. Luego, ingresa la cantidad de iteraciones a simular.
+3. **Búsqueda de Camino en Grafo**: Se construye un grafo simple y se encuentra un camino entre dos nodos.
 
-## License
+## Licencia
 
-This project is licensed under the MIT License. See the `LICENSE` file for details.
+Este proyecto está licenciado bajo la Licencia apache 2.0. Consulta el archivo `LICENSE` para más detalles.
 
-## Acknowledgements
+## Agradecimientos
 
 - [Spring Boot](https://spring.io/projects/spring-boot)
 - [Maven](https://maven.apache.org/)
 - [IntelliJ IDEA](https://www.jetbrains.com/idea/)
 
-For further reference, please consider the following sections in the `HELP.md` file:
+Para más referencias, por favor considera las siguientes secciones en el archivo `HELP.md`:
 
-- [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
-- [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/3.4.3/maven-plugin)
-- [Create an OCI image](https://docs.spring.io/spring-boot/3.4.3/maven-plugin/build-image.html)
+- [Documentación oficial de Apache Maven](https://maven.apache.org/guides/index.html)
+- [Guía de referencia del plugin de Maven para Spring Boot](https://docs.spring.io/spring-boot/3.4.3/maven-plugin)
+- [Crear una imagen OCI](https://docs.spring.io/spring-boot/3.4.3/maven-plugin/build-image.html)
