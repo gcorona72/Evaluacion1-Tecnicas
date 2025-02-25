@@ -151,7 +151,7 @@ Al ejecutar la aplicación, se presentará un menú para seleccionar una de las 
 
 Este proyecto está licenciado bajo la Licencia apache 2.0. Consulta el archivo `LICENSE` para más detalles.
 
-## Agradecimientos
+## Herramientas
 
 - [Spring Boot](https://spring.io/projects/spring-boot)
 - [Maven](https://maven.apache.org/)
