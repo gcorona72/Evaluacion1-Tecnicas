@@ -7,6 +7,7 @@ import mates.Matematicas;      // Práctica 1
 import dominio.Tablero;       // Práctica 2
 import practica3.Graph;       // Práctica 3
 
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
@@ -142,7 +143,12 @@ public class ExamenTecnicasApplication implements CommandLineRunner {
             tablero.generarEstadoActualPorMontecarlo();
         } else {
             System.out.println("Leyendo estado inicial desde fichero 'matriz'...");
-            tablero.leerEstadoActual();
+            try {
+                tablero.leerEstadoActual();
+            } catch (IOException e) {
+                System.out.println("Error al leer el fichero: " + e.getMessage());
+                return;
+            }
         }
 
         System.out.println("Estado inicial:\n" + tablero);
