@@ -154,12 +154,13 @@ Los Javadocs generados para este proyecto se encuentran en la carpeta `target/re
 ## Diagrams
 
 ### Class Diagram
+![ZP5FImCn4CNl-HH3BwPOzk2nI6dHuaaHBBrFat6DvCyocOWWVdUpRLE4ghYNn_3c_MRtxJ8BifJWbRg0MuSzOq2m13SUCsLbgcHOlsEWk24JdS6y6WPVLLoAyA6WFfTSeduITh7lkWwG-poTmrjoLdsg8sE3Eq-SMi8JyReUjsbbfA3NBR1twPLC4UH7HYFrrfK-uzqn3Y_NsqK3xcSzFGnexKEofBSGgxHiizQs7wrdJc46](https://github.com/user-attachments/assets/9c416352-ff5b-46c6-b634-be28d9c02c36)
 
-![Class Diagram](diagrams/class-diagram.png)
+
 
 ### Sequence Diagram
+![ZP7FIiD04CRl-nHpJ2u5wwqvs29H19MYVO5nTzgkR6R3_W7nRVe0ddm0mRoOmnh41XLpIJBVRxxyo2vZmf1ovrHvK8ihjjfYWFO9E-8DQNd7kEfx9_TaFJTAsIrKxs_j8-cS15s7uQ2Jn71oLaFQ4qDrFxpK2kHQt14w-ooO7WvEP-SZT9Ye6mwoucFpILqxx8H1k95CSccBivXbLjNWZwQ1H5N6ZI8sTlk7plm7dVD0mbYM](https://github.com/user-attachments/assets/68924f81-d75d-484e-9646-2f20655028e5)
 
-![Sequence Diagram](diagrams/sequence-diagram.png)
 
 ## Ejecutar la Aplicación
 
