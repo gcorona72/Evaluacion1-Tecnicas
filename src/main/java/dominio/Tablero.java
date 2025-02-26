@@ -1,49 +1,64 @@
 package dominio;
 
 import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 
+/**
+ * Representa el tablero del Juego de la Vida de Conway.
+ * <p>
+ * Permite cargar el estado inicial desde un fichero o generarlo
+ * aleatoriamente, aplicar las reglas del juego y transicionar
+ * entre estados.
+ */
 public class Tablero {
+
+    /**
+     * Dimensión del tablero (número de filas y columnas).
+     */
     private static final int DIMENSION = 30;
+
+    /**
+     * Matriz que representa el estado actual de cada célula:
+     * 1 = viva, 0 = muerta.
+     */
     private int[][] estadoActual = new int[DIMENSION][DIMENSION];
+
+    /**
+     * Matriz que representa el siguiente estado del tablero,
+     * calculado a partir de {@code estadoActual}.
+     */
     private int[][] estadoSiguiente = new int[DIMENSION][DIMENSION];
 
     /**
-     * Lee el estado inicial desde el archivo 'matriz.txt' ubicado en resources.
-     * Si el archivo no existe, muestra un error y no cambia el estado actual.
+     * Lee el estado inicial de un fichero llamado 'matriz' o 'matriz.txt'.
+     * <p>
+     * Cada línea del archivo debe tener exactamente 30 caracteres
+     * ('0' o '1'), y debe haber 30 líneas. Si el archivo no cumple
+     * este formato, el tablero se llenará hasta donde sea posible.
+     *
+     * @throws IOException Si ocurre un error al leer el fichero.
      */
-    public void leerEstadoActual() {
-        try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("matriz.txt")) {
-            if (inputStream == null) {
-                System.out.println("Error: No se encontró el archivo 'matriz.txt' en resources.");
-                return;
-            }
-
-            try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
-                for (int i = 0; i < DIMENSION; i++) {
-                    String linea = br.readLine();
-                    if (linea == null || linea.length() < DIMENSION) {
-                        System.out.println("Error: Archivo 'matriz.txt' tiene un formato incorrecto.");
-                        return;
-                    }
-                    for (int j = 0; j < DIMENSION; j++) {
-                        estadoActual[i][j] = (linea.charAt(j) == '1') ? 1 : 0;
-                    }
+    public void leerEstadoActual() throws IOException {
+        try (BufferedReader br = new BufferedReader(new FileReader("matriz"))) {
+            for (int i = 0; i < DIMENSION; i++) {
+                String linea = br.readLine();
+                if (linea == null) {
+                    break; // No hay más líneas
+                }
+                for (int j = 0; j < DIMENSION && j < linea.length(); j++) {
+                    estadoActual[i][j] = (linea.charAt(j) == '1') ? 1 : 0;
                 }
             }
-        } catch (IOException e) {
-            System.out.println("Error al leer el archivo: " + e.getMessage());
         }
-
-        // Calcula el estado siguiente después de cargar la matriz
+        // Calcula el estado siguiente tras la carga
         generarEstadoSiguiente();
     }
 
     /**
-     * Genera un estado inicial aleatorio (Montecarlo).
-     * Aproximadamente la mitad de las celdas estarán vivas (1).
+     * Genera un estado inicial aleatorio para el tablero.
+     * <p>
+     * Cada celda tiene una probabilidad del 50% de estar viva.
      */
     public void generarEstadoActualPorMontecarlo() {
         for (int i = 0; i < DIMENSION; i++) {
@@ -55,36 +70,57 @@ public class Tablero {
     }
 
     /**
-     * Calcula el próximo estado del tablero aplicando las reglas del Juego de la Vida.
+     * Aplica las reglas del Juego de la Vida para generar la matriz
+     * {@code estadoSiguiente} a partir de {@code estadoActual}.
+     * <ul>
+     *   <li>Una célula viva con menos de 2 vecinos vivos muere (soledad).</li>
+     *   <li>Una célula viva con 2 o 3 vecinos vivos sigue viva.</li>
+     *   <li>Una célula viva con más de 3 vecinos vivos muere (superpoblación).</li>
+     *   <li>Una célula muerta con exactamente 3 vecinos vivos nace.</li>
+     * </ul>
      */
     private void generarEstadoSiguiente() {
         for (int i = 0; i < DIMENSION; i++) {
             for (int j = 0; j < DIMENSION; j++) {
                 int vecinosVivos = contarVecinosVivos(i, j);
-                estadoSiguiente[i][j] = calcularNuevoEstado(estadoActual[i][j], vecinosVivos);
+
+                // Célula viva
+                if (estadoActual[i][j] == 1) {
+                    if (vecinosVivos == 2 || vecinosVivos == 3) {
+                        estadoSiguiente[i][j] = 1;
+                    } else {
+                        estadoSiguiente[i][j] = 0;
+                    }
+                }
+                // Célula muerta
+                else {
+                    if (vecinosVivos == 3) {
+                        estadoSiguiente[i][j] = 1;
+                    } else {
+                        estadoSiguiente[i][j] = 0;
+                    }
+                }
             }
         }
     }
 
     /**
-     * Aplica las reglas del Juego de la Vida a una célula individual.
-     */
-    private int calcularNuevoEstado(int estadoActual, int vecinosVivos) {
-        if (estadoActual == 1) {
-            return (vecinosVivos == 2 || vecinosVivos == 3) ? 1 : 0;  // Sigue viva o muere
-        } else {
-            return (vecinosVivos == 3) ? 1 : 0;  // Renace si tiene 3 vecinos
-        }
-    }
-
-    /**
-     * Cuenta cuántos vecinos vivos tiene una célula dada en el tablero.
+     * Cuenta cuántos vecinos vivos tiene la célula en la posición (fila, col).
+     * <p>
+     * Se consideran vecinos las 8 celdas adyacentes (vertical, horizontal
+     * y diagonal).
+     *
+     * @param fila Índice de la fila.
+     * @param col  Índice de la columna.
+     * @return Número de vecinos vivos alrededor de la célula.
      */
     private int contarVecinosVivos(int fila, int col) {
         int count = 0;
         for (int i = fila - 1; i <= fila + 1; i++) {
             for (int j = col - 1; j <= col + 1; j++) {
-                if (i == fila && j == col) continue;  // Ignorar la propia célula
+                if (i == fila && j == col) {
+                    continue; // No contar la propia célula
+                }
                 if (i >= 0 && i < DIMENSION && j >= 0 && j < DIMENSION) {
                     count += estadoActual[i][j];
                 }
@@ -94,7 +130,8 @@ public class Tablero {
     }
 
     /**
-     * Avanza el estado del tablero a la siguiente generación.
+     * Copia el contenido de {@code estadoSiguiente} a {@code estadoActual},
+     * y luego recalcula un nuevo estado siguiente.
      */
     public void transitarAlEstadoSiguiente() {
         for (int i = 0; i < DIMENSION; i++) {
@@ -106,7 +143,11 @@ public class Tablero {
     }
 
     /**
-     * Devuelve el estado actual del tablero en formato texto.
+     * Devuelve una representación en texto del tablero, donde cada
+     * línea corresponde a una fila y cada carácter representa
+     * el estado de una célula (0 = muerta, 1 = viva).
+     *
+     * @return Cadena de texto con el estado actual del tablero.
      */
     @Override
     public String toString() {

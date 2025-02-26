@@ -10,13 +10,37 @@ import practica3.Graph;       // Práctica 3
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Clase principal de la aplicación Spring Boot que integra tres prácticas:
+ * <ul>
+ *   <li>Aproximación de PI (Práctica 1)</li>
+ *   <li>Juego de la Vida (Práctica 2)</li>
+ *   <li>Grafo - Búsqueda de camino (Práctica 3)</li>
+ * </ul>
+ *
+ * Ofrece un menú interactivo en la consola para que el usuario seleccione la
+ * práctica a ejecutar. Al terminar cada práctica, el programa regresa al menú
+ * principal, permitiendo ejecutar otra práctica o salir.
+ */
 @SpringBootApplication
 public class ExamenTecnicasApplication implements CommandLineRunner {
 
+    /**
+     * Método principal que inicia la aplicación Spring Boot.
+     *
+     * @param args Argumentos de línea de comando (no se utilizan en este proyecto).
+     */
     public static void main(String[] args) {
         SpringApplication.run(ExamenTecnicasApplication.class, args);
     }
 
+    /**
+     * Sobrescribe el método run de CommandLineRunner para mostrar el menú interactivo
+     * en consola y ejecutar la práctica seleccionada por el usuario.
+     *
+     * @param args Argumentos de línea de comando pasados a la aplicación.
+     * @throws Exception Si ocurre alguna excepción durante la ejecución de las prácticas.
+     */
     @Override
     public void run(String... args) throws Exception {
         Scanner sc = new Scanner(System.in);
@@ -63,7 +87,12 @@ public class ExamenTecnicasApplication implements CommandLineRunner {
     }
 
     /**
-     * Práctica 1: Aproximación de PI (Montecarlo).
+     * Ejecuta la Práctica 1: Aproximación de PI mediante el método de Montecarlo.
+     * <p>
+     * Pide al usuario la cantidad de puntos a generar, invoca el método
+     * {@code Matematicas.generarNumeroPi} y muestra el resultado en consola.
+     *
+     * @param sc Objeto Scanner para leer la entrada del usuario.
      */
     private void ejecutarPractica1(Scanner sc) {
         System.out.println("\n=== Práctica 1: Aproximación de PI ===");
@@ -83,7 +112,14 @@ public class ExamenTecnicasApplication implements CommandLineRunner {
     }
 
     /**
-     * Práctica 2: Juego de la Vida.
+     * Ejecuta la Práctica 2: Juego de la Vida.
+     * <p>
+     * Permite elegir entre leer el estado inicial desde un fichero o generarlo
+     * aleatoriamente, y luego simula un número determinado de iteraciones,
+     * mostrando la evolución del tablero en consola.
+     *
+     * @param sc Objeto Scanner para leer la entrada del usuario.
+     * @throws InterruptedException Si ocurre un error durante las pausas entre generaciones.
      */
     private void ejecutarPractica2(Scanner sc) throws InterruptedException {
         System.out.println("\n=== Práctica 2: Juego de la Vida ===");
@@ -129,7 +165,10 @@ public class ExamenTecnicasApplication implements CommandLineRunner {
     }
 
     /**
-     * Práctica 3: Grafo - Búsqueda de un camino.
+     * Ejecuta la Práctica 3: Grafo y Búsqueda de un camino.
+     * <p>
+     * Construye un grafo de ejemplo y busca un camino entre dos nodos, mostrando
+     * el resultado en consola.
      */
     private void ejecutarPractica3() {
         System.out.println("\n=== Práctica 3: Búsqueda de un camino en Grafo ===");
