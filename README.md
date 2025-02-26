@@ -1,4 +1,3 @@
-
 # ExamenTecnicas
 
 ## Descripción General
@@ -129,6 +128,8 @@ public class Graph<V> {
 
 ## Javadocs
 
+Los Javadocs generados para este proyecto se encuentran en la carpeta `target/reports/apidocs/index.html`.
+
 ### Clases y Métodos
 
 - **ExamenTecnicasApplication**
@@ -158,12 +159,7 @@ public class Graph<V> {
 
 ### Sequence Diagram
 
-![ZP5FImCn4CNl-HH3BwPOzk2nI6dHuaaHBBrFat6DvCyocOWWVdUpRLE4ghYNn_3c_MRtxJ8BifJWbRg0MuSzOq2m13SUCsLbgcHOlsEWk24JdS6y6WPVLLoAyA6WFfTSeduITh7lkWwG-poTmrjoLdsg8sE3Eq-SMi8JyReUjsbbfA3NBR1twPLC4UH7HYFrrfK-uzqn3Y_NsqK3xcSzFGnexKEofBSGgxHiizQs7wrdJc46](https://github.com/user-attachments/assets/ef6b108b-2f05-46df-841e-85ffa3e92bf7)
-
-
 ![Sequence Diagram](diagrams/sequence-diagram.png)
-
-![ZP7FIiD04CRl-nHpJ2u5wwqvs29H19MYVO5nTzgkR6R3_W7nRVe0ddm0mRoOmnh41XLpIJBVRxxyo2vZmf1ovrHvK8ihjjfYWFO9E-8DQNd7kEfx9_TaFJTAsIrKxs_j8-cS15s7uQ2Jn71oLaFQ4qDrFxpK2kHQt14w-ooO7WvEP-SZT9Ye6mwoucFpILqxx8H1k95CSccBivXbLjNWZwQ1H5N6ZI8sTlk7plm7dVD0mbYM](https://github.com/user-attachments/assets/91282687-c44d-4fc4-80e9-86a0ef131c22)
 
 ## Ejecutar la Aplicación
 
